@@ -30,3 +30,10 @@ export default {
 };
 </script>
 
+<style>
+h3 {
+  color: #5d7087;
+}
+</style>
+
+

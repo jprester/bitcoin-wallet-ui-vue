@@ -48,3 +48,10 @@ export default {
 };
 </script>
 
+<style scoped>
+.send-crypto-form button {
+  background-color: #74cab3;
+}
+</style>
+
+

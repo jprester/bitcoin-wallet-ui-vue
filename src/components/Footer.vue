@@ -20,7 +20,6 @@ export default {
 <style scoped>
 .footer-content {
   border-top: 1px solid #cccccc;
-  margin-top: 40px;
   padding-top: 10px;
   padding-right: 20px;
 }

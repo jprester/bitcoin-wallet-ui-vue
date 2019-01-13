@@ -67,11 +67,11 @@ body {
 
 .app-body {
   max-width: 980px;
-  display: flex;
-  margin-top: 30px;
   margin-left: auto;
   margin-right: auto;
-  padding: 0;
+  padding: 20px 0px;
+  height: auto;
+  background-color: #f7f7f7;
 }
 
 .row {
