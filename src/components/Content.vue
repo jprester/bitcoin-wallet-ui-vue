@@ -1,37 +1,31 @@
 <template>
-  <div>
-    <button @click="doSomething">click</button>
-    <input @input="onInputChange">
-    <p>{{text}}</p>
-    <div>
-      <ul v-for="transaction in transactions" :key="transaction.address">
-        <li>{{ transaction.address }} {{ transaction.amount }}</li>
-      </ul>
-      <!-- {{testUsers}} -->
+  <div class="app-body">
+    <div class="row">
+      <div class="content-block block-size-1-2">
+        <SendCryptoForm/>
+        <SpendingStatusWidget/>
+        <PriceTrackerWidget/>
+      </div>
+      <div class="content-block block-size-1-2 content-right">
+        <TransactionList/>
+      </div>
     </div>
-    <div></div>
   </div>
 </template>
+
 <script>
+import SendCryptoForm from "./SendCryptoForm";
+import TransactionList from "./TransactionList";
+import PriceTrackerWidget from "./PriceTrackerWidget";
+import SpendingStatusWidget from "./SpendingStatusWidget";
+
 export default {
   name: "Content",
-  props: {
-    testUsers: Array
-  },
-  data() {
-    return {
-      text: "lalala",
-      input: "",
-      transactions: this.$store.state.transactions
-    };
-  },
-  methods: {
-    doSomething() {
-      this.text = this.input;
-    },
-    onInputChange(event) {
-      this.input = event.target.value;
-    }
+  components: {
+    SendCryptoForm,
+    TransactionList,
+    PriceTrackerWidget,
+    SpendingStatusWidget
   }
 };
 </script>

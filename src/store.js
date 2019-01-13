@@ -3,9 +3,36 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-export const mutations = {};
+export const mutations = {
+  setAmount: (state, payload) => {
+    state.amount = payload.amount
+  },
+  setAddress: (state, payload) => {
+    state.walletAddress = payload.address
+  },
+  addTransaction: (state, payload) => {
+    state.transactions.push(payload);
+    state.btcAvailable = state.btcAvailable - payload.amount;
+  },
+  setPrice: (state, payload) => {
+    state.btcPrice = payload.btcPrice
+  }
+};
 
-export const actions = {};
+export const actions = {
+  setAmount: ({commit}, payload) => {
+    commit('setAmount', payload);
+  },
+  setAddress: ({commit}, payload) => {
+    commit('setAddress', payload);
+  },
+  addTransaction: ({commit}, payload) => {
+    commit('addTransaction', payload);
+  },
+  setPrice: ({commit}, payload) => {
+    commit('setPrice', payload);
+  }
+};
 
 export const defaultState = {
     transactions: [
@@ -19,7 +46,7 @@ export const defaultState = {
     btcAvailable: 10,
     btcSent: 0,
     formVisibleOnMobile: false,
-    btcPrice: '',
+    btcPrice: 0,
 };
 
 export default new Vuex.Store({
