@@ -44,11 +44,16 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 
+html {
+  font-size: 62.5%;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: "Roboto", sans-serif;
   font-size: 12px;
+  background-color: #f5f5f5;
 }
 
 .App {
@@ -56,22 +61,21 @@ body {
   margin: 0;
 }
 
-.app-container {
+/* .app-container {
   margin-left: auto;
   margin-right: auto;
   margin-top: 0px;
   margin-bottom: 0px;
   padding: 0;
   max-width: 940px;
-}
+} */
 
-.app-body {
-  max-width: 980px;
+.content-container {
   margin-left: auto;
   margin-right: auto;
   padding: 20px 0px;
   height: auto;
-  background-color: #f7f7f7;
+  max-width: 85vw;
 }
 
 .row {
@@ -82,12 +86,12 @@ body {
 }
 
 .content-block {
-  padding: 10px 10px 10px 10px;
+  padding: 10px;
   align-items: center;
 }
 
 .block-size-1-2 {
-  width: 49%;
+  width: 48%;
 }
 
 .block-size-1-3 {
@@ -115,16 +119,11 @@ h2 {
   font-size: 15px;
 }
 
-h3 {
-  font-size: 14px;
+.section-title {
+  font-size: 2rem;
 }
 
-.send-crypto-form {
-  max-width: 300px;
-  padding: 15px;
-  border: 1px solid #cccccc;
-  margin-bottom: 20px;
-}
+
 
 @media only screen and (max-width: 658px) {
   .content-right {

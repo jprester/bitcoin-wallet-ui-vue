@@ -1,13 +1,15 @@
 <template>
   <div class="app-footer">
-    <footer class="footer-content">
-      <p class="footer-text">
-        Made by Janko Prester: janko.prester@gmail.com. Github:
-        <a
-          href="https://github.com/jprester"
-        >Jprester</a>
-      </p>
-    </footer>
+    <div class="content-container">
+      <footer class="footer-content">
+        <p class="footer-text">
+          Made by Janko Prester: janko.prester@gmail.com. Github:
+          <a
+            href="https://github.com/jprester"
+          >Jprester</a>
+        </p>
+      </footer>
+    </div>
   </div>
 </template>
 
