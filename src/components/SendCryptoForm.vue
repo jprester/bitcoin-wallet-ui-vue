@@ -5,7 +5,9 @@
       <div>
         <input
           type="text"
+          ref="walletInput"
           @input="handleAddressChange"
+          @focus="focusInput('walletInput')"
           v-model="addressInput"
           class="input input-spacing wallet-input"
           placeholder="Wallet Address"
@@ -15,8 +17,11 @@
       <div>
         <input
           placeholder="Amount"
+          ref="amountInput"
+          @focus="focusInput('amountInput')"
           class="input input-spacing btc-input"
           type="text"
+          @keydown.enter="handleSendClick"
           @input="handleAmountChange"
           v-model="amountInput"
         >
@@ -57,6 +62,9 @@ export default {
     };
   },
   methods: {
+    focusInput(ref) {
+      this.$refs[ref].select()
+    },
     handleSendClick() {
       this.$store.dispatch("addTransaction", {
         amount: this.amountInput,
@@ -94,7 +102,13 @@ export default {
   background: #afafaf;
   transition: all 0.5s;
   cursor: pointer;
-  box-shadow: 0px 0.8px 0.8px 0.8px #88888854;
+  /* box-shadow: 1px 1px 1px 1px #88888854; */
+}
+
+.button:focus {
+  background: #afafaf;
+  transition: all 0.5s;
+  /* box-shadow: 0.8px 0.8px 0.8px 0.8px #8888889e; */
 }
 
 .button-transaction-container {
@@ -128,6 +142,17 @@ export default {
   font-weight: 300;
   line-height: 1rem;
   border-bottom: 1px solid #e7e7e7;
+}
+
+.input:focus {
+  transition: all 0.2s;
+  border-bottom: 1px solid #74cab3;
+  /* box-shadow: 0.8px 0.8px 0.8px 0.8px #8888889e; */
+}
+
+.input::selection {
+  background: #74cab3;
+  color: #fff;
 }
 
 .btc-input {
