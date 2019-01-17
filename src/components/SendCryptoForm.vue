@@ -109,6 +109,7 @@ export default {
 
 .transaction-value-spacing {
   margin-right: 10px;
+  margin-bottom: 0px;
 }
 
 .send-crypto-form {
@@ -151,11 +152,28 @@ input:focus{
   outline: none;
 }
 
-@media only screen and (max-width: 658px) {
+@media only screen and (max-width: 768px) {
   .send-crypto-form {
     max-width: 80vw;
   }
 }
+
+  @media only screen and (max-width: 1124px) {
+    .button-transaction-container {
+      flex-flow: column;
+    }
+
+    .transaction-value-spacing {
+      margin-bottom: 10px;
+    }
+    .transaction-value-spacing {
+      align-self: flex-start;
+    }
+
+    .button {
+      align-self: flex-end;
+    }
+  }
 </style>
 
 

@@ -22,7 +22,7 @@ export default {
 <style scoped>
 
 .price-container {
-  width: 30vw;
+  max-width: 30vw;
 }
 
 .price-text {
@@ -32,7 +32,7 @@ export default {
   display: flex;
 }
 
-@media only screen and (max-width: 658px) {
+@media only screen and (max-width: 768px) {
   .price-container {
     max-width: 80vw;
   }

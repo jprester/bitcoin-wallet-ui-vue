@@ -45,10 +45,16 @@ export default {
 }
 
 .transactions-container {
-  width: 40vw;
+  max-width: 40vw;
 }
 
 .transactions-item-list:first-child {
   border: 1px solid #e7e7e7;
+}
+
+@media only screen and (max-width: 768px) {
+  .transactions-container {
+    max-width: 80vw;
+  }
 }
 </style>

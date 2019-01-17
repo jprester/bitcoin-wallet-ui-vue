@@ -125,7 +125,7 @@ h2 {
 
 
 
-@media only screen and (max-width: 658px) {
+@media only screen and (max-width: 768px) {
   .content-right {
     margin: 0;
   }

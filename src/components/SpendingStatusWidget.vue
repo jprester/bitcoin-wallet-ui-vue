@@ -31,7 +31,7 @@ export default {
 
 <style>
 .balance-container {
-  width: 30vw;
+  max-width: 30vw;
   margin: 4rem 0;
 }
 
