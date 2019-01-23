@@ -30,18 +30,11 @@
       <div class="button-transaction-container">
         <p class="transaction-value-text transaction-value-spacing">
           Transaction Value in USD:
-          <span
-            v-if="valueInUSD"
-            class="bold"
-          >{{ valueInUSD }} $</span>
+          <span v-if="valueInUSD" class="bold">{{ valueInUSD }} $</span>
         </p>
 
-        <button
-          @click="handleSendClick"
-          class="button"
-        >SEND</button>
+        <button @click="handleSendClick" class="button">SEND</button>
       </div>
-      
     </div>
   </div>
 </template>
@@ -51,9 +44,9 @@ export default {
   name: "SendCryptoForm",
   computed: {
     valueInUSD() {
-      if(!this.amountInput) return '0'
+      if (!this.amountInput) return "0";
       return (this.amountInput * this.$store.state.btcPrice).toFixed(2);
-    },
+    }
   },
   data() {
     return {
@@ -63,7 +56,7 @@ export default {
   },
   methods: {
     focusInput(ref) {
-      this.$refs[ref].select()
+      this.$refs[ref].select();
     },
     handleSendClick() {
       this.$store.dispatch("addTransaction", {
@@ -118,7 +111,7 @@ export default {
 }
 .transaction-value-text {
   margin: 0;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
 }
 
 .transaction-value-spacing {
@@ -128,7 +121,7 @@ export default {
 
 .send-crypto-form {
   padding: 20px;
-  font-size: 2rem;
+  font-size: 1.5rem;
   background-color: #fff;
   box-shadow: 0.8px 2px 2px 0.8px #88888854;
   margin-bottom: 20px;
@@ -142,6 +135,7 @@ export default {
   font-weight: 300;
   line-height: 1rem;
   border-bottom: 1px solid #e7e7e7;
+  padding: 5px 15px;
 }
 
 .input:focus {
@@ -155,9 +149,10 @@ export default {
   color: #fff;
 }
 
-.btc-input {
-  text-align: right;
-  padding: 5px 15px;
+.input::placeholder {
+  font-style: italic;
+  color: #999999;
+  font-size: 1.4rem;
 }
 
 .wallet-input {
@@ -173,7 +168,7 @@ export default {
   font-weight: 700;
 }
 
-input:focus{
+input:focus {
   outline: none;
 }
 
@@ -183,22 +178,22 @@ input:focus{
   }
 }
 
-  @media only screen and (max-width: 1124px) {
-    .button-transaction-container {
-      flex-flow: column;
-    }
-
-    .transaction-value-spacing {
-      margin-bottom: 10px;
-    }
-    .transaction-value-spacing {
-      align-self: flex-start;
-    }
-
-    .button {
-      align-self: flex-end;
-    }
+@media only screen and (max-width: 1124px) {
+  .button-transaction-container {
+    flex-flow: column;
   }
+
+  .transaction-value-spacing {
+    margin-bottom: 10px;
+  }
+  .transaction-value-spacing {
+    align-self: flex-start;
+  }
+
+  .button {
+    align-self: flex-end;
+  }
+}
 </style>
 
 

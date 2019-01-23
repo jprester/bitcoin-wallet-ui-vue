@@ -35,10 +35,7 @@ export const actions = {
 };
 
 export const defaultState = {
-    transactions: [
-      {address: "1JHwenDp9A98XdjfYkHKyiE3R99Q72K9X4", amount: 2.5},
-      {address: "1Unoc4af6gCq3xzdDFmGLpq18jbTW1nZD9", amount: 1.2}
-    ],
+    transactions: [],
     amount: '',
     walletAddress: '',
     walletAddressFieldError: '',
@@ -47,6 +44,7 @@ export const defaultState = {
     btcSent: 0,
     formVisibleOnMobile: false,
     btcPrice: 0,
+    errorMessage: ''
 };
 
 export default new Vuex.Store({
