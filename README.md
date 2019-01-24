@@ -1,4 +1,6 @@
-# Crypto Wallet UI Vue
+# Crypto Wallet UI (Vue)
+
+Simple UI template for Bitcoin wallet. Made with Vue.js and Vuex for state management.
 
 ## Project setup
 ```
@@ -19,3 +21,6 @@ npm run build
 ```
 npm run lint
 ```
+
+## Contact
+janko.prester@gmail.com
