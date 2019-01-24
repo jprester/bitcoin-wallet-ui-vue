@@ -7,7 +7,7 @@
       <ul
         class="transactions-item-list"
         v-for="transaction in transactions"
-        :key="transaction.address"
+        :key="transaction.id"
         v-else
       >
         <li class="transactions-item">

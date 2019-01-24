@@ -28,10 +28,13 @@
       </div>
 
       <div class="button-transaction-container">
-        <p class="transaction-value-text transaction-value-spacing">
-          Transaction Value in USD:
-          <span v-if="valueInUSD" class="bold">{{ valueInUSD }} $</span>
-        </p>
+        <div clas="button-container-left">
+          <p class="error-status">{{ errorMsgText }}</p>
+          <p class="transaction-value-text transaction-value-spacing">
+            Transaction Value in USD:
+            <span v-if="valueInUSD" class="bold">{{ valueInUSD }} $</span>
+          </p>
+        </div>
 
         <button @click="handleSendClick" class="button">SEND</button>
       </div>
@@ -46,6 +49,9 @@ export default {
     valueInUSD() {
       if (!this.amountInput) return "0";
       return (this.amountInput * this.$store.state.btcPrice).toFixed(2);
+    },
+    errorMsgText() {
+      return this.$store.state.errorMessage;
     }
   },
   data() {
@@ -58,18 +64,70 @@ export default {
     focusInput(ref) {
       this.$refs[ref].select();
     },
-    handleSendClick() {
-      this.$store.dispatch("addTransaction", {
-        amount: this.amountInput,
-        address: this.addressInput
+
+    resetForm() {
+      this.$store.dispatch("setErrorMessage", {
+        errorMessage: ""
       });
+
       this.amountInput = 0;
       this.addressInput = "";
     },
+
+    validateForm() {
+      if (!this.addressInput) {
+        return "Please enter the correct address.";
+      }
+
+      if (!this.amountInput) {
+        return "Please enter the correct amount.";
+      }
+
+      if (this.amountInput > this.$store.state.btcAvailable) {
+        return "You dont have sufficent funds.";
+      }
+
+      return;
+    },
+
+    handleSendClick() {
+      const validateResult = this.validateForm();
+
+      if (validateResult) {
+        this.$store.dispatch("setErrorMessage", {
+          errorMessage: validateResult
+        });
+
+        return;
+      }
+
+      this.createTransaction();
+      this.resetForm();
+    },
+
+    createTransaction() {
+      this.$store.dispatch("addTransaction", {
+        amount: parseInt(this.amountInput),
+        address: this.addressInput,
+        id: this.generateId()
+      });
+    },
+
+    generateId() {
+      const transactionsNumber = this.$store.state.transactions.length;
+
+      if (transactionsNumber < 1) {
+        return 0;
+      }
+
+      return this.$store.state.transactions[transactionsNumber - 1].id + 1;
+    },
+
     handleAmountChange(event) {
       this.amountInput = event.target.value;
       this.$store.dispatch("setAmount", { amount: this.amountInput });
     },
+
     handleAddressChange(event) {
       this.addressInput = event.target.value;
       this.$store.dispatch("setAddress", { address: this.addressInput });
@@ -104,14 +162,23 @@ export default {
   /* box-shadow: 0.8px 0.8px 0.8px 0.8px #8888889e; */
 }
 
+.error-status {
+  align-self: flex-start;
+  color: #db2828;
+  font-size: 1rem;
+  font-style: italic;
+  height: 8px;
+}
+
 .button-transaction-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 .transaction-value-text {
   margin: 0;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 
 .transaction-value-spacing {

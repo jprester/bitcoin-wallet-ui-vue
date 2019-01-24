@@ -16,6 +16,9 @@ export const mutations = {
   },
   setPrice: (state, payload) => {
     state.btcPrice = payload.btcPrice
+  },
+  setErrorMessage: (state, payload) => {
+    state.errorMessage = payload.errorMessage
   }
 };
 
@@ -31,7 +34,10 @@ export const actions = {
   },
   setPrice: ({commit}, payload) => {
     commit('setPrice', payload);
-  }
+  },
+  setErrorMessage: ({commit}, payload) => {
+    commit('setErrorMessage', payload);
+  },
 };
 
 export const defaultState = {
