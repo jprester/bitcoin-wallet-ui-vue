@@ -11,7 +11,7 @@
           v-model="addressInput"
           class="input input-spacing wallet-input"
           placeholder="Wallet Address"
-        >
+        />
       </div>
 
       <div>
@@ -24,7 +24,7 @@
           @keydown.enter="handleSendClick"
           @input="handleAmountChange"
           v-model="amountInput"
-        >
+        />
       </div>
 
       <div class="button-transaction-container">
@@ -52,12 +52,12 @@ export default {
     },
     errorMsgText() {
       return this.$store.state.errorMessage;
-    }
+    },
   },
   data() {
     return {
       amountInput: 0,
-      addressInput: ""
+      addressInput: "",
     };
   },
   methods: {
@@ -67,7 +67,7 @@ export default {
 
     resetForm() {
       this.$store.dispatch("setErrorMessage", {
-        errorMessage: ""
+        errorMessage: "",
       });
 
       this.amountInput = 0;
@@ -95,7 +95,7 @@ export default {
 
       if (validateResult) {
         this.$store.dispatch("setErrorMessage", {
-          errorMessage: validateResult
+          errorMessage: validateResult,
         });
 
         return;
@@ -107,9 +107,9 @@ export default {
 
     createTransaction() {
       this.$store.dispatch("addTransaction", {
-        amount: parseInt(this.amountInput),
+        amount: parseFloat(this.amountInput),
         address: this.addressInput,
-        id: this.generateId()
+        id: this.generateId(),
       });
     },
 
@@ -131,8 +131,8 @@ export default {
     handleAddressChange(event) {
       this.addressInput = event.target.value;
       this.$store.dispatch("setAddress", { address: this.addressInput });
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -262,5 +262,3 @@ input:focus {
   }
 }
 </style>
-
-
