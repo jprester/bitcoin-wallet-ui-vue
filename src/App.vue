@@ -1,9 +1,9 @@
 <template>
   <div id="app" class="App">
     <div class="app-container">
-      <Header/>
-      <Content :price="btcPrice"/>
-      <Footer/>
+      <Header />
+      <Content :price="btcPrice" />
+      <Footer />
     </div>
   </div>
 </template>
@@ -20,24 +20,23 @@ export default {
   components: {
     Header,
     Content,
-    Footer
+    Footer,
   },
   data: function() {
     return { btcPrice: 0 };
   },
   mounted() {
     axios({
-      url: "https://rest.coinapi.io/v1/exchangerate/BTC/USD",
+      url: "https://blockchain.info/ticker",
       method: "get",
-      headers: {
-        "X-CoinAPI-Key": "A28420FA-918D-454B-A43C-5ABA0D249B49"
+    }).then((response) => {
+      if (response && response.data && response.data.USD) {
+        this.$store.dispatch("setPrice", {
+          btcPrice: response.data.USD.last,
+        });
       }
-    }).then(response => {
-      this.$store.dispatch("setPrice", {
-        btcPrice: response.data.rate
-      });
     });
-  }
+  },
 };
 </script>
 
@@ -122,8 +121,6 @@ h2 {
 .section-title {
   font-size: 2rem;
 }
-
-
 
 @media only screen and (max-width: 768px) {
   .content-right {
